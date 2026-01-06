@@ -5,9 +5,6 @@ excerpt: "Local-First Software stellt die Daten des Nutzers in den Mittelpunkt. 
 tags: ["Local-First", "Dezentralisierung", "Offline-First"]
 featured: true
 ---
-
-# Was bedeutet Local-First?
-
 Local-First ist ein Paradigma für die Softwareentwicklung, das die Daten des Nutzers in den Mittelpunkt stellt. Im Gegensatz zu Cloud-First-Anwendungen, bei denen deine Daten auf fremden Servern liegen, bleiben bei Local-First deine Daten primär auf deinem Gerät.
 
 ## Die sieben Prinzipien

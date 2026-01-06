@@ -3,12 +3,14 @@ import BlogList from '../components/blog/BlogList';
 import ProjectGrid from '../components/projects/ProjectGrid';
 
 const topics = [
-  'Local-First',
+  'App Entwicklung',
   'Web of Trust',
-  'E2EE',
-  'Dezentrale Identität',
-  'Sync-Protokolle',
-  'Offline-First',
+  'E2E Verschlüsselung',
+  'Dezentrale Identitäten',
+  'Local-First',
+  'Attestations',
+  'Local Economy',
+  'Geographische Maps',
 ];
 
 export default function Home() {
@@ -32,14 +34,14 @@ export default function Home() {
           {/* Intro Text */}
           <div className="text-center md:text-left">
             <p className="text-base-content/60 text-sm uppercase tracking-wider mb-2">
-              Beratung · Entwicklung · Forschung
+              Beratung · Forschung · Entwicklung
             </p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-              Dezentrale Systeme für<br />
-              <span className="text-primary">Gemeinschaften</span>
+              Dezentrale Systeme die<br />
+              <span className="text-primary">Menschen verbinden</span>
             </h1>
             <p className="text-base-content/70 text-lg max-w-xl mb-6">
-              Ich entwickle Werkzeuge, Strukturen und Systeme,
+              Ich erforsche und designe Werkzeuge, Strukturen und Systeme,
               die Menschen und Gemeinschaften dezentral vernetzen.
             </p>
 
@@ -99,24 +101,24 @@ export default function Home() {
 
       {/* Projects */}
       <section>
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold">Projekte</h2>
+        <h2 className="text-2xl font-bold mb-8">Projekte</h2>
+        <ProjectGrid limit={3} />
+        <div className="text-center mt-8">
           <Link to="/projects" className="link link-primary text-sm font-medium">
             Alle Projekte →
           </Link>
         </div>
-        <ProjectGrid limit={3} />
       </section>
 
       {/* Recent Articles */}
       <section>
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold">Neueste Artikel</h2>
+        <h2 className="text-2xl font-bold mb-8">Artikel</h2>
+        <BlogList limit={3} />
+        <div className="text-center mt-8">
           <Link to="/blog" className="link link-primary text-sm font-medium">
             Alle Artikel →
           </Link>
         </div>
-        <BlogList limit={3} />
       </section>
     </div>
   );

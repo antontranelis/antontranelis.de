@@ -5,12 +5,16 @@ interface GitHubRepoStats {
   forks: number;
   contributors: number;
   loading: boolean;
-  error: boolean;
+  rateLimited: boolean;
 }
 
 interface Props {
   repoUrl: string;
 }
+
+// Simple in-memory cache
+const statsCache: Record<string, { data: GitHubRepoStats; timestamp: number }> = {};
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
   const match = url.match(/github\.com\/([^/]+)\/([^/]+)/);
@@ -24,13 +28,22 @@ export default function GitHubStats({ repoUrl }: Props) {
     forks: 0,
     contributors: 0,
     loading: true,
-    error: false,
+    rateLimited: false,
   });
 
   useEffect(() => {
     const parsed = parseGitHubUrl(repoUrl);
     if (!parsed) {
-      setStats(s => ({ ...s, loading: false, error: true }));
+      setStats(s => ({ ...s, loading: false }));
+      return;
+    }
+
+    const cacheKey = `${parsed.owner}/${parsed.repo}`;
+    const cached = statsCache[cacheKey];
+
+    // Use cache if available and not expired
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      setStats(cached.data);
       return;
     }
 
@@ -42,40 +55,47 @@ export default function GitHubStats({ repoUrl }: Props) {
         const repoRes = await fetch(
           `https://api.github.com/repos/${owner}/${repo}`
         );
-        if (!repoRes.ok) throw new Error('Repo not found');
-        const repoData = await repoRes.json();
 
-        // Fetch contributors count (limited to first page)
-        const contribRes = await fetch(
-          `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=1&anon=true`,
-          { method: 'HEAD' }
-        );
-
-        let contributors = 0;
-        const linkHeader = contribRes.headers.get('Link');
-        if (linkHeader) {
-          const match = linkHeader.match(/page=(\d+)>; rel="last"/);
-          if (match) contributors = parseInt(match[1], 10);
-        } else {
-          // Fallback: fetch and count
-          const contribDataRes = await fetch(
-            `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100`
-          );
-          if (contribDataRes.ok) {
-            const contribData = await contribDataRes.json();
-            contributors = Array.isArray(contribData) ? contribData.length : 0;
-          }
+        // Check for rate limiting
+        if (repoRes.status === 403) {
+          setStats(s => ({ ...s, loading: false, rateLimited: true }));
+          return;
         }
 
-        setStats({
+        if (!repoRes.ok) {
+          setStats(s => ({ ...s, loading: false }));
+          return;
+        }
+
+        const repoData = await repoRes.json();
+
+        // Fetch contributors count
+        let contributors = 0;
+        try {
+          const contribRes = await fetch(
+            `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100&anon=true`
+          );
+          if (contribRes.ok) {
+            const contribData = await contribRes.json();
+            contributors = Array.isArray(contribData) ? contribData.length : 0;
+          }
+        } catch {
+          // Contributors fetch failed, keep as 0
+        }
+
+        const newStats: GitHubRepoStats = {
           stars: repoData.stargazers_count || 0,
           forks: repoData.forks_count || 0,
           contributors,
           loading: false,
-          error: false,
-        });
+          rateLimited: false,
+        };
+
+        // Cache the result
+        statsCache[cacheKey] = { data: newStats, timestamp: Date.now() };
+        setStats(newStats);
       } catch {
-        setStats(s => ({ ...s, loading: false, error: true }));
+        setStats(s => ({ ...s, loading: false }));
       }
     }
 
@@ -90,7 +110,8 @@ export default function GitHubStats({ repoUrl }: Props) {
     );
   }
 
-  if (stats.error) {
+  // Don't show anything if rate limited or no data
+  if (stats.rateLimited || (stats.stars === 0 && stats.forks === 0 && stats.contributors === 0)) {
     return null;
   }
 
@@ -127,48 +148,36 @@ export default function GitHubStats({ repoUrl }: Props) {
         className="flex items-center gap-1 hover:text-primary transition-colors"
         title="Forks"
       >
+        {/* GitHub Octicon: repo-forked */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+          viewBox="0 0 16 16"
+          fill="currentColor"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
-          />
+          <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z" />
         </svg>
         <span>{stats.forks}</span>
       </a>
 
-      {stats.contributors > 0 && (
-        <a
-          href={`${repoUrl}/graphs/contributors`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1 hover:text-primary transition-colors"
-          title="Contributors"
+      <a
+        href={`${repoUrl}/graphs/contributors`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-1 hover:text-primary transition-colors"
+        title="Contributors"
+      >
+        {/* GitHub Octicon: people */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          viewBox="0 0 16 16"
+          fill="currentColor"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-          <span>{stats.contributors}</span>
-        </a>
-      )}
+          <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z" />
+        </svg>
+        <span>{stats.contributors}</span>
+      </a>
     </div>
   );
 }

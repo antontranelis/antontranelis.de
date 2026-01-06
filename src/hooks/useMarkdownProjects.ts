@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { Project } from '../types';
+import type { Project, TeamMember } from '../types';
 
 // Dynamischer Import aller .md Dateien aus dem content/projects Ordner
 const projectModules = import.meta.glob('/src/content/projects/*.md', {
@@ -24,22 +24,54 @@ function parseFrontmatter(content: string): {
   const markdown = match[2];
   const data: Record<string, unknown> = {};
 
-  // Parse YAML-ähnliches Frontmatter mit Array-Support
+  // Parse YAML-ähnliches Frontmatter mit Array-Support und Objekt-Arrays
   let currentKey: string | null = null;
-  let currentArray: string[] | null = null;
+  let currentArray: unknown[] | null = null;
+  let currentObject: Record<string, string> | null = null;
 
   frontmatterStr.split('\n').forEach(line => {
-    // Array-Item (beginnt mit "  - ")
+    // Objekt-Array-Item (beginnt mit "  - " gefolgt von key: value)
+    const objectItemMatch = line.match(/^\s+-\s+(\w+):\s*(.*)$/);
+    if (objectItemMatch) {
+      // Neues Objekt im Array beginnen
+      if (currentObject !== null && currentArray !== null) {
+        currentArray.push(currentObject);
+      }
+      currentObject = {};
+      const [, key, value] = objectItemMatch;
+      currentObject[key] = value.replace(/^["']|["']$/g, '');
+      return;
+    }
+
+    // Objekt-Fortsetzung (beginnt mit "    " gefolgt von key: value, tiefere Einrückung)
+    const objectContinueMatch = line.match(/^\s{4,}(\w+):\s*(.*)$/);
+    if (objectContinueMatch && currentObject !== null) {
+      const [, key, value] = objectContinueMatch;
+      currentObject[key] = value.replace(/^["']|["']$/g, '');
+      return;
+    }
+
+    // Einfaches Array-Item (beginnt mit "  - ")
     if (line.match(/^\s+-\s+/)) {
+      // Vorheriges Objekt speichern falls vorhanden
+      if (currentObject !== null && currentArray !== null) {
+        currentArray.push(currentObject);
+        currentObject = null;
+      }
       if (currentArray !== null) {
-        const value = line.replace(/^\s+-\s+/, '').trim();
+        const value = line.replace(/^\s+-\s+/, '').trim().replace(/^["']|["']$/g, '');
         currentArray.push(value);
       }
       return;
     }
 
-    // Speichere vorheriges Array wenn vorhanden
+    // Speichere vorheriges Array wenn vorhanden (neue Key-Value-Zeile)
     if (currentKey && currentArray !== null) {
+      // Letztes Objekt speichern falls vorhanden
+      if (currentObject !== null) {
+        currentArray.push(currentObject);
+        currentObject = null;
+      }
       data[currentKey] = currentArray;
       currentArray = null;
       currentKey = null;
@@ -81,6 +113,9 @@ function parseFrontmatter(content: string): {
 
   // Letztes Array speichern
   if (currentKey && currentArray !== null) {
+    if (currentObject !== null) {
+      currentArray.push(currentObject);
+    }
     data[currentKey] = currentArray;
   }
 
@@ -110,10 +145,15 @@ export function useMarkdownProjects(): (Project & { content: string })[] {
         opencollectiveUrl: (data.opencollectiveUrl as string) || undefined,
         partners: (data.partners as string[]) || undefined,
         todos: (data.todos as string[]) || undefined,
+        // Neue Felder
+        status: (data.status as string) || undefined,
+        team: (data.team as TeamMember[]) || undefined,
+        userStories: (data.userStories as string[]) || undefined,
+        sort: typeof data.sort === 'number' ? data.sort : (typeof data.sort === 'string' ? parseInt(data.sort, 10) : 999),
       };
     });
 
-    // Alphabetisch nach Titel sortieren
-    return projects.sort((a, b) => a.title.localeCompare(b.title));
+    // Nach sort-Attribut sortieren (niedrigere Zahlen zuerst)
+    return projects.sort((a, b) => (a.sort ?? 999) - (b.sort ?? 999));
   }, []);
 }

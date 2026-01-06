@@ -36,7 +36,6 @@ export default function BlogPost() {
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       <article className="flex-1 min-w-0">
-        <Link to="/blog" className="btn btn-ghost btn-sm mb-6">← Alle Artikel</Link>
         <header className="mb-8">
           <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
           <div className="flex flex-wrap gap-2 items-center text-base-content/70 text-sm">
@@ -57,7 +56,7 @@ export default function BlogPost() {
             </div>
           </div>
         </header>
-        <div className="prose prose-sm max-w-none">
+        <div className="prose max-w-none">
           <MarkdownRenderer content={post.content} />
         </div>
       </article>

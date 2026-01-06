@@ -1,3 +1,9 @@
+export interface TeamMember {
+  name: string;
+  role?: string;
+  github?: string;
+}
+
 export interface SidebarData {
   relatedProjects?: string[];
   relatedArticles?: string[];
@@ -6,6 +12,9 @@ export interface SidebarData {
   partners?: string[];
   todos?: string[];
   dates?: Array<{ label: string; date: string }>;
+  status?: string;
+  team?: TeamMember[];
+  userStories?: string[];
 }
 
 export interface PostMeta {
@@ -30,4 +39,5 @@ export interface Project extends SidebarData {
   liveUrl?: string;
   githubUrl?: string;
   featured?: boolean;
+  sort?: number;
 }
