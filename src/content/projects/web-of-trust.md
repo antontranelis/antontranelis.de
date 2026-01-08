@@ -38,9 +38,9 @@ Menschen vernetzen sich wieder lokal - basierend auf echten Begegnungen statt Al
 
 ### Das Problem
 
-| Heute | Besser |
+| Früher | Heute |
 |-------|--------|
-| Globale Plattformen, lokale Einsamkeit | Digitale Tools für echte Nachbarschaft |
+| Globale Plattformen, lokale Einsamkeit | Menschen im echten Leben zusammen bringen |
 | Daten bei Konzernen | Daten bei dir |
 | Vertrauen durch Sternebewertungen | Vertrauen durch persönliche Begegnungen |
 | Account-Erstellung alleine am Bildschirm | Onboarding durch einen Menschen |

@@ -60,7 +60,7 @@ export default function Sidebar({
               href={links.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+              className="flex items-center gap-2 hover:text-primary transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export default function Sidebar({
               href={links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm hover:text-primary transition-colors mb-2"
+              className="flex items-center gap-2 hover:text-primary transition-colors mb-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@ export default function Sidebar({
             </h3>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary"></span>
-              <span className="text-sm">{status}</span>
+              <span>{status}</span>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function Sidebar({
             </h3>
             <ul className="space-y-2">
               {team.map((member, i) => (
-                <li key={i} className="text-sm">
+                <li key={i}>
                   <div className="flex items-center justify-between">
                     <span className="font-medium">{member.name}</span>
                     {member.github && (
@@ -203,7 +203,7 @@ export default function Sidebar({
               href={links.npm}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+              className="flex items-center gap-2 hover:text-primary transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +292,7 @@ export default function Sidebar({
             </h3>
             <ul className="space-y-2">
               {dates.map((item, i) => (
-                <li key={i} className="text-sm">
+                <li key={i}>
                   <span className="font-medium">{item.date}</span>
                   <br />
                   <span className="text-base-content/70">{item.label}</span>

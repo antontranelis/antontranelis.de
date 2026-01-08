@@ -1,4 +1,4 @@
-import { useMarkdownProjects } from '../../hooks/useMarkdownProjects';
+import { useMdxProjects } from '../../hooks/useMdxProjects';
 import ProjectCard from './ProjectCard';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function ProjectGrid({ limit, featured }: Props) {
-  const projects = useMarkdownProjects();
+  const projects = useMdxProjects();
   let displayProjects = projects;
 
   if (featured) {

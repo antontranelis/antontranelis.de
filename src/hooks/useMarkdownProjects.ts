@@ -26,7 +26,7 @@ function parseFrontmatter(content: string): {
 
   // Parse YAML-ähnliches Frontmatter mit Array-Support und Objekt-Arrays
   let currentKey: string | null = null;
-  let currentArray: unknown[] | null = null;
+  let currentArray: (string | Record<string, string>)[] | null = null;
   let currentObject: Record<string, string> | null = null;
 
   frontmatterStr.split('\n').forEach(line => {
@@ -114,7 +114,7 @@ function parseFrontmatter(content: string): {
   // Letztes Array speichern
   if (currentKey && currentArray !== null) {
     if (currentObject !== null) {
-      currentArray.push(currentObject);
+      (currentArray as (string | Record<string, string>)[]).push(currentObject);
     }
     data[currentKey] = currentArray;
   }

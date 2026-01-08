@@ -1,18 +1,69 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useMarkdownProjects } from '../hooks/useMarkdownProjects';
+import { useMdxProjects } from '../hooks/useMdxProjects';
 import { useMarkdownPosts } from '../hooks/useMarkdownPosts';
 import MarkdownRenderer from '../components/blog/MarkdownRenderer';
 import Sidebar from '../components/shared/Sidebar';
+import type { ProjectData } from '../types';
+import {
+  Persona,
+  PersonaSection,
+  CriticalMoment,
+  UserStory,
+  UserStoryGrid,
+  UserStoryTable,
+  UserStoryRow,
+  FlowDiagram,
+  FlowStep,
+  FlowArrow,
+  ThreeColumnFlow,
+  FlowColumn,
+  FAQItem,
+  FAQGroup,
+  Callout,
+  ComparisonTable,
+  ComparisonRow,
+  QROnboardingFlow,
+  OnboardingFlowDiagram,
+  AttestationFlowDiagram,
+  Tabs,
+  Tab,
+} from '../components/mdx';
 
-type Tab = 'description' | 'userstories' | 'contribute';
+type TabType = 'description' | 'flows' | 'personas' | 'userstories' | 'faq' | 'contribute';
+
+// MDX-Komponenten für den Provider
+const mdxComponents = {
+  Persona,
+  PersonaSection,
+  CriticalMoment,
+  UserStory,
+  UserStoryGrid,
+  UserStoryTable,
+  UserStoryRow,
+  FlowDiagram,
+  FlowStep,
+  FlowArrow,
+  ThreeColumnFlow,
+  FlowColumn,
+  FAQItem,
+  FAQGroup,
+  Callout,
+  ComparisonTable,
+  ComparisonRow,
+  QROnboardingFlow,
+  OnboardingFlowDiagram,
+  AttestationFlowDiagram,
+  Tabs,
+  Tab,
+};
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const projects = useMarkdownProjects();
+  const projects = useMdxProjects();
   const posts = useMarkdownPosts();
-  const project = projects.find(p => p.id === slug);
-  const [activeTab, setActiveTab] = useState<Tab>('description');
+  const project = projects.find((p: ProjectData) => p.id === slug);
+  const [activeTab, setActiveTab] = useState<TabType>('description');
 
   if (!project) {
     return (
@@ -28,81 +79,131 @@ export default function ProjectDetail() {
 
   // Resolve related items
   const relatedProjects = project.relatedProjects
-    ?.map(slug => projects.find(p => p.id === slug))
+    ?.map((relSlug: string) => projects.find((p: ProjectData) => p.id === relSlug))
     .filter(Boolean)
-    .map(p => ({ slug: p!.id, title: p!.title }));
+    .map((p) => ({ slug: p!.id, title: p!.title }));
 
   const relatedArticles = project.relatedArticles
-    ?.map(slug => posts.find(p => p.slug === slug))
+    ?.map((relSlug: string) => posts.find((p) => p.slug === relSlug))
     .filter(Boolean)
-    .map(p => ({ slug: p!.slug, title: p!.title }));
+    .map((p) => ({ slug: p!.slug, title: p!.title }));
 
-  const hasUserStories = project.userStories && project.userStories.length > 0;
   const hasTodos = project.todos && project.todos.length > 0;
+
+  // Check if project has content (MD or MDX)
+  const hasContent = project.isMdx || (!project.isMdx && project.content?.trim());
+
+  // Check for MDX tab exports
+  const hasFlowsTab = project.isMdx && project.FlowsTab;
+  const hasPersonasTab = project.isMdx && project.PersonasTab;
+  const hasUserStoriesTab = project.isMdx && project.UserStoriesTab;
+  const hasFAQTab = project.isMdx && project.FAQTab;
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       <article className="flex-1 min-w-0">
+        {project.image && (
+          <figure className="mb-6 -mx-4 sm:mx-0 sm:rounded-xl overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-64 sm:h-80 object-cover"
+            />
+          </figure>
+        )}
         <header className="mb-8">
           <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
           <p className="text-base-content/70">{project.description}</p>
         </header>
 
         {/* Tabs */}
-        <div role="tablist" className="tabs tabs-box mb-6">
-          <input
-            type="radio"
-            name="project_tabs"
+        <div role="tablist" className="flex flex-wrap bg-base-200 rounded-xl p-1 mb-6 gap-1">
+          <button
             role="tab"
-            className="tab"
-            aria-label="Beschreibung"
-            checked={activeTab === 'description'}
-            onChange={() => setActiveTab('description')}
-          />
-          {hasUserStories && (
-            <input
-              type="radio"
-              name="project_tabs"
+            className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'description' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+            onClick={() => setActiveTab('description')}
+          >
+            Übersicht
+          </button>
+          {hasFlowsTab && (
+            <button
               role="tab"
-              className="tab"
-              aria-label="User Stories"
-              checked={activeTab === 'userstories'}
-              onChange={() => setActiveTab('userstories')}
-            />
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'flows' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+              onClick={() => setActiveTab('flows')}
+            >
+              Flows
+            </button>
+          )}
+          {hasPersonasTab && (
+            <button
+              role="tab"
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'personas' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+              onClick={() => setActiveTab('personas')}
+            >
+              Personas
+            </button>
+          )}
+          {hasUserStoriesTab && (
+            <button
+              role="tab"
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'userstories' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+              onClick={() => setActiveTab('userstories')}
+            >
+              User Stories
+            </button>
+          )}
+          {hasFAQTab && (
+            <button
+              role="tab"
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'faq' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+              onClick={() => setActiveTab('faq')}
+            >
+              FAQ
+            </button>
           )}
           {hasTodos && (
-            <input
-              type="radio"
-              name="project_tabs"
+            <button
               role="tab"
-              className="tab"
-              aria-label="Mitmachen"
-              checked={activeTab === 'contribute'}
-              onChange={() => setActiveTab('contribute')}
-            />
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'contribute' ? 'bg-primary text-primary-content shadow-md' : 'hover:bg-base-300'}`}
+              onClick={() => setActiveTab('contribute')}
+            >
+              Mitmachen
+            </button>
           )}
         </div>
 
         {/* Tab Content */}
-        {activeTab === 'description' && project.content && project.content.trim() && (
+        {activeTab === 'description' && hasContent && (
           <div className="prose max-w-none">
-            <MarkdownRenderer content={project.content} />
+            {project.isMdx ? (
+              <project.MdxContent components={mdxComponents} />
+            ) : (
+              <MarkdownRenderer content={project.content} />
+            )}
           </div>
         )}
 
-        {activeTab === 'userstories' && hasUserStories && (
-          <div className="space-y-4">
-            <p className="text-base-content/70 mb-4">
-              Was soll dieses Projekt ermöglichen?
-            </p>
-            <ul className="space-y-3">
-              {project.userStories!.map((story, i) => (
-                <li key={i} className="flex items-start gap-3 p-4 bg-base-200 rounded-lg">
-                  <span className="text-primary text-lg">•</span>
-                  <span>{story}</span>
-                </li>
-              ))}
-            </ul>
+        {activeTab === 'flows' && hasFlowsTab && project.FlowsTab && (
+          <div className="prose max-w-none">
+            {(() => { const FlowsTab = project.FlowsTab; return <FlowsTab />; })()}
+          </div>
+        )}
+
+        {activeTab === 'personas' && hasPersonasTab && project.PersonasTab && (
+          <div>
+            {(() => { const PersonasTab = project.PersonasTab; return <PersonasTab />; })()}
+          </div>
+        )}
+
+        {activeTab === 'userstories' && hasUserStoriesTab && project.UserStoriesTab && (
+          <div>
+            {(() => { const UserStoriesTab = project.UserStoriesTab; return <UserStoriesTab />; })()}
+          </div>
+        )}
+
+        {activeTab === 'faq' && hasFAQTab && project.FAQTab && (
+          <div>
+            {(() => { const FAQTab = project.FAQTab; return <FAQTab />; })()}
           </div>
         )}
 
@@ -112,7 +213,7 @@ export default function ProjectDetail() {
               Diese Aufgaben stehen an - hilf mit!
             </p>
             <ul className="space-y-3">
-              {project.todos!.map((todo, i) => (
+              {project.todos!.map((todo: string, i: number) => (
                 <li key={i} className="flex items-start gap-3 p-4 bg-base-200 rounded-lg">
                   <span className="text-base-content/40 text-lg">○</span>
                   <span>{todo}</span>

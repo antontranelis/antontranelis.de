@@ -70,7 +70,6 @@ export default function BlogPost() {
           relatedProjects={relatedProjects}
           relatedArticles={relatedArticles}
           partners={post.partners}
-          todos={post.todos}
         />
       </div>
     </div>

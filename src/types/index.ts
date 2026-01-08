@@ -41,3 +41,20 @@ export interface Project extends SidebarData {
   featured?: boolean;
   sort?: number;
 }
+
+export interface ProjectWithContent extends Project {
+  content: string;
+  isMdx: false;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface ProjectWithMdx extends Project {
+  MdxContent: React.ComponentType<{ components?: Record<string, React.ComponentType<any>> }>;
+  FlowsTab?: React.ComponentType;
+  PersonasTab?: React.ComponentType;
+  UserStoriesTab?: React.ComponentType;
+  FAQTab?: React.ComponentType;
+  isMdx: true;
+}
+
+export type ProjectData = ProjectWithContent | ProjectWithMdx;

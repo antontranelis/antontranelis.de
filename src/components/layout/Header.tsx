@@ -31,8 +31,8 @@ export default function Header() {
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link to="/" className="text-xl font-bold tracking-tight">
-            
+          <Link to="/" className="text-current font-bold tracking-tight">
+
           </Link>
 
           {/* Desktop Navigation */}
@@ -95,7 +95,7 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
               </div>
-              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 border border-base-200">
+              <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 border border-base-200">
                 {navLinks.map(link => (
                   <li key={link.to}>
                     <NavLink
