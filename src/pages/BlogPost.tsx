@@ -63,13 +63,8 @@ export default function BlogPost() {
 
       <div className="lg:w-64 shrink-0">
         <Sidebar
-          links={{
-            npm: post.npmUrl,
-            opencollective: post.opencollectiveUrl,
-          }}
           relatedProjects={relatedProjects}
           relatedArticles={relatedArticles}
-          partners={post.partners}
         />
       </div>
     </div>
