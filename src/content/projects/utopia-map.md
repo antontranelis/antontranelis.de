@@ -12,12 +12,3 @@ opencollectiveUrl: https://opencollective.com/utopia-project
 liveUrl: https://utopia-map.org
 image: /map.png
 ---
-
-Utopia Map ist eine kollaborative Webanwendung, die dezentralisierte Koordination ermöglicht und echte Netzwerk-Verbindungen fördert.
-
-## Features
-
-- Intuitive geografische Karte
-- Items hinzufügen, bearbeiten und verwalten
-- Dezentrale Architektur
-- Community-gesteuerte Entwicklung

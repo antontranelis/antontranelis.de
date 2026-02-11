@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { ProjectData } from '../../types';
 
@@ -72,8 +71,8 @@ function useGitHubStats(repoUrl: string | undefined): GitHubStats | null {
 }
 
 export default function ProjectCard({ project }: Props) {
-  const hasContent = project.isMdx || (!project.isMdx && project.content?.trim());
   const githubStats = useGitHubStats(project.githubUrl);
+  const externalUrl = project.liveUrl || project.githubUrl;
 
   const cardContent = (
     <>
@@ -209,9 +208,9 @@ export default function ProjectCard({ project }: Props) {
               </span>
             )}
           </div>
-          {hasContent && (
+          {externalUrl && (
             <span className="text-sm font-medium text-primary">
-              Mehr erfahren →
+              Ansehen →
             </span>
           )}
         </div>
@@ -219,14 +218,16 @@ export default function ProjectCard({ project }: Props) {
     </>
   );
 
-  if (hasContent) {
+  if (externalUrl) {
     return (
-      <Link
-        to={`/project/${project.id}`}
+      <a
+        href={externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow group"
       >
         {cardContent}
-      </Link>
+      </a>
     );
   }
 

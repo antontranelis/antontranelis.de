@@ -4,19 +4,6 @@ export interface TeamMember {
   github?: string;
 }
 
-export interface SidebarData {
-  relatedProjects?: string[];
-  relatedArticles?: string[];
-  npmUrl?: string;
-  opencollectiveUrl?: string;
-  partners?: string[];
-  todos?: string[];
-  dates?: Array<{ label: string; date: string }>;
-  status?: string;
-  team?: TeamMember[];
-  userStories?: string[];
-}
-
 export interface PostMeta {
   title: string;
   date: string;
@@ -24,13 +11,16 @@ export interface PostMeta {
   tags: string[];
   featured?: boolean;
   slug: string;
+  externalUrl?: string;
 }
 
-export interface Post extends PostMeta, SidebarData {
+export interface Post extends PostMeta {
   content: string;
+  relatedProjects?: string[];
+  relatedArticles?: string[];
 }
 
-export interface Project extends SidebarData {
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -40,21 +30,29 @@ export interface Project extends SidebarData {
   githubUrl?: string;
   featured?: boolean;
   sort?: number;
+  status?: string;
+  team?: TeamMember[];
+  relatedProjects?: string[];
+  relatedArticles?: string[];
+  npmUrl?: string;
+  opencollectiveUrl?: string;
+  partners?: string[];
+  todos?: string[];
+  userStories?: string[];
 }
 
-export interface ProjectWithContent extends Project {
+export interface ProjectData {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  technologies: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  featured?: boolean;
+  sort?: number;
+  status?: string;
+  team?: TeamMember[];
   content: string;
   isMdx: false;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface ProjectWithMdx extends Project {
-  MdxContent: React.ComponentType<{ components?: Record<string, React.ComponentType<any>> }>;
-  FlowsTab?: React.ComponentType;
-  PersonasTab?: React.ComponentType;
-  UserStoriesTab?: React.ComponentType;
-  FAQTab?: React.ComponentType;
-  isMdx: true;
-}
-
-export type ProjectData = ProjectWithContent | ProjectWithMdx;

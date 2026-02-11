@@ -100,6 +100,7 @@ export function useMarkdownPosts(): Post[] {
         featured: (data.featured as boolean) || false,
         slug,
         content,
+        externalUrl: (data.externalUrl as string) || undefined,
         // Sidebar data
         relatedProjects: (data.relatedProjects as string[]) || undefined,
         relatedArticles: (data.relatedArticles as string[]) || undefined,

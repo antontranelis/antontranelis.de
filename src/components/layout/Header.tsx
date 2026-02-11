@@ -32,7 +32,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link to="/" className="text-current font-bold tracking-tight">
-
+            Anton Tranelis
           </Link>
 
           {/* Desktop Navigation */}
