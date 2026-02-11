@@ -37,16 +37,25 @@ export default function BlogCard({ post }: Props) {
       <div className="space-y-2">
         {/* Tags */}
         <div className="flex items-center gap-2">
-          {post.tags.slice(0, 2).map(tag => (
-            <Link
-              key={tag}
-              to={`/blog?tag=${encodeURIComponent(tag)}`}
-              onClick={e => e.stopPropagation()}
-              className="text-xs font-medium text-primary uppercase tracking-wider hover:underline"
-            >
-              {tag}
-            </Link>
-          ))}
+          {post.tags.slice(0, 2).map(tag =>
+            isExternal ? (
+              <span
+                key={tag}
+                className="text-xs font-medium text-primary uppercase tracking-wider"
+              >
+                {tag}
+              </span>
+            ) : (
+              <Link
+                key={tag}
+                to={`/blog?tag=${encodeURIComponent(tag)}`}
+                onClick={e => e.stopPropagation()}
+                className="text-xs font-medium text-primary uppercase tracking-wider hover:underline"
+              >
+                {tag}
+              </Link>
+            )
+          )}
         </div>
 
         {/* Title */}
