@@ -6,10 +6,10 @@ const topics = [
   'KI-Automatisierung',
   'KI-App-Entwicklung',
   'Web of Trust',
-  'E2E Verschlüsselung',
   'Dezentrale Identitäten',
-  'Local-First',
-  'Local Economy',
+  'Ende-zu-Ende-Verschlüsselung',
+  'Lokale Software',
+  'Freies Geld',
 ];
 
 export default function Home() {
@@ -40,7 +40,7 @@ export default function Home() {
               <span className="text-primary">Menschen verbinden</span>
             </h1>
             <p className="text-base-content/70 text-lg max-w-xl mb-6">
-              Ich baue Werkzeuge, die Menschen und Gemeinschaften im echten
+              Ich baue mit euch Werkzeuge, die Menschen und Gemeinschaften im echten
               Leben verbinden — dezentral, verschlüsselt, ohne Abhängigkeit
               von großen Plattformen.
             </p>
@@ -66,16 +66,12 @@ export default function Home() {
               >
                 Meine Dienste
               </Link>
-              {/* Matrix Button — kommt zurück wenn aktiv genutzt
               <a
-                href="https://matrix.to/#/@ant0n:matrix.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline gap-2"
+                href="mailto:mail@antontranelis.de"
+                className="btn btn-outline"
               >
-                Matrix
+                E-Mail schreiben
               </a>
-              */}
             </div>
           </div>
         </div>

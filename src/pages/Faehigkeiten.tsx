@@ -13,7 +13,7 @@ const skillCategories = [
   },
   {
     label: 'KI',
-    skills: ['LLM-Integration', 'MCP Server', 'Agentische Systeme', 'Claude API', 'Automatisierung'],
+    skills: ['KI-Integration', 'Automatisierung', 'Agentische Systeme', 'MCP Server', 'Claude API'],
   },
   {
     label: 'DevOps',
@@ -49,31 +49,28 @@ export default function Faehigkeiten() {
     <div className="py-8">
       <header className="mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Fähigkeiten</h1>
-        <p className="text-base-content/70 text-lg max-w-2xl">
-          Was ich mitbringe — und was ich für dich tun kann.
-        </p>
       </header>
 
       <section className="max-w-4xl space-y-12">
         {/* Wer ich bin */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Wer ich bin</h2>
           <div className="prose prose-lg max-w-none">
             <p>
               Ich bin Full-Stack-Entwickler und Systemdenker. Seit über sieben Jahren
-              arbeite ich an derselben Vision: Werkzeuge bauen, die Menschen im echten
-              Leben verbinden — dezentral, verschlüsselt, ohne Abhängigkeit von
-              großen Plattformen.
+              arbeite ich zusammen mit einer wachsenden Community an derselben Vision:
+              Werkzeuge bauen, die Menschen im echten Leben verbinden — dezentral,
+              verschlüsselt, ohne Abhängigkeit von großen Plattformen.
             </p>
             <p>
-              Ich denke von den Menschen her, nicht vom Code.
-              Jede technische Entscheidung frage ich: Dient das der Gemeinschaft?
-              Schützt das die Privatsphäre? Funktioniert das auch ohne Internet?
+              Technik ist für mich Mittel zum Zweck — sie soll Menschen dienen,
+              ihre Daten schützen und auch ohne ständige Internetverbindung
+              funktionieren.
             </p>
             <p>
-              Ich arbeite eng mit KI zusammen — nicht um schneller zu sein, sondern
-              um tiefer zu gehen. Dabei lerne ich ständig neue Wege, wie KI Menschen
-              und Organisationen stärken kann. Dieses Wissen gebe ich weiter.
+              KI ist ein fester Bestandteil meiner Arbeit — nicht um schneller zu sein,
+              sondern um tiefer zu gehen. Dabei lerne ich ständig neue Wege, wie KI
+              Menschen und Organisationen stärken kann. Dieses Wissen gebe ich an
+              Unternehmen und Teams weiter.
             </p>
           </div>
         </div>
@@ -128,7 +125,7 @@ export default function Faehigkeiten() {
             <h2 className="card-title text-xl">Interesse?</h2>
             <p className="text-base-content/70 max-w-md">
               Schreib mir — ich freue mich über Anfragen zu Automatisierung,
-              App-Entwicklung oder Forschungskooperationen.
+              App-Entwicklung oder gemeinsame Projekte.
             </p>
             <div className="card-actions mt-4">
               <a

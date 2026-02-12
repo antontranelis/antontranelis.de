@@ -13,12 +13,12 @@ const researchFields = [
     description: 'Daten gehören den Menschen, nicht den Plattformen.',
   },
   {
-    title: 'Dezentrale Identitäten (DIDs)',
+    title: 'Dezentrale Identitäten',
     description: 'Identität ohne zentrale Autorität — selbstbestimmt und portabel.',
   },
   {
-    title: 'CRDTs & Local-First',
-    description: 'Software die auch ohne Internet funktioniert und sich automatisch synchronisiert.',
+    title: 'Offline-fähige Software',
+    description: 'CRDTs & Local-First — funktioniert auch ohne Internet und synchronisiert sich automatisch.',
   },
   {
     title: 'Dezentrale Autorisierung',
@@ -31,61 +31,57 @@ export default function Ziele() {
     <div className="py-8">
       <header className="mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Ziele</h1>
-        <p className="text-base-content/70 text-lg max-w-2xl">
-          Warum ich das hier mache — und wohin die Reise geht.
-        </p>
       </header>
 
       <section className="max-w-3xl space-y-12">
         {/* Vision */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Vision</h2>
-          <blockquote className="border-l-4 border-primary pl-4 text-lg text-base-content/80 italic">
-            Menschen bei der Selbstermächtigung unterstützen, dezentrale Systeme
-            aufbauen und Gemeinschaften im echten Leben vernetzen.
-          </blockquote>
-        </div>
+      <p className="prose prose-lg max-w-none">
+                Ich will mit euch unser Schicksal in die eigenen Hände nehmen,
+                Gemeinschaft im echten Leben leben und die Zukunft bauen, die wir
+                uns für unsere Kinder und Enkel wünschen.
+              </p>
+
+
 
         {/* Warum */}
         <div>
           <h2 className="text-2xl font-bold mb-4">Warum</h2>
           <div className="prose prose-lg max-w-none">
             <p>
-              Ich glaube, dass sich gerade grundlegend etwas verändert.
-              Immer mehr Menschen spüren, dass die Art wie wir zusammenleben
-              nicht mehr funktioniert — und suchen nach Alternativen.
+              Während wir als Menschheit vor großen
+              Herausforderungen stehen, machen sich immer mehr Menschen auf
+              den Weg, neue Alternativen zu erproben.
             </p>
             <p>
-              Gleichzeitig entstehen Technologien, die zum ersten Mal echte
-              Dezentralisierung ermöglichen: Software die ohne zentrale Server
-              funktioniert, Verschlüsselung die Privatsphäre schützt,
-              Identitätssysteme die keiner Firma gehören.
+              Gleichzeitig haben wir im 21. Jahrhundert alles, was wir brauchen — das Wissen, die
+              Werkzeuge und die Vernetzung — um unser Zusammenleben grundlegend
+              zu verändern. Was fehlt, ist nicht die Technologie, sondern dass
+              wir anfangen.
             </p>
             <p>
-              Ich will diese Werkzeuge so bauen, dass sie den Menschen dienen,
-              die bereits neue Wege gehen — in ihren Nachbarschaften, Gärten
-              und Gemeinschaften. Nicht als nächstes Social Network, sondern
-              als Infrastruktur die der Gemeinschaft gehört.
+              Lasst uns zusammenkommen, unsere Träume und Visionen teilen,
+              uns gegenseitig unterstützen in unsere Kraft zu kommen und
+              gemeinsam aktiv werden — lokal und überall auf der Welt.
             </p>
           </div>
         </div>
 
-        {/* Was ich baue */}
+        {/* Mein Beitrag */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Was ich baue</h2>
+          <h2 className="text-2xl font-bold mb-4">Mein Beitrag</h2>
           <div className="prose prose-lg max-w-none">
             <ul>
               <li>
-                <strong>Vertrauensnetzwerke</strong> die auf echten Begegnungen
-                basieren — nicht auf Algorithmen oder Sternebewertungen
+                <strong>Web of Trust</strong> — ein Netzwerk, das auf
+                echten Begegnungen basiert
               </li>
               <li>
-                <strong>Local-First Software</strong> — deine Daten gehören dir,
-                funktionieren offline und synchronisieren sich wenn du willst
+                <strong>Lokale Software</strong> — deine Daten gehören dir,
+                funktioniert auch offline
               </li>
               <li>
-                <strong>Modulare Bausteine</strong> für Gemeinschaften — Kalender,
-                Karten, Profile, verschlüsselte Kommunikation
+                <strong>Werkzeuge für Gemeinschaften</strong> — Karte, Kalender,
+                Marktplatz, sichere Kommunikation
               </li>
             </ul>
           </div>
@@ -94,12 +90,14 @@ export default function Ziele() {
         {/* Für wen */}
         <div>
           <h2 className="text-2xl font-bold mb-4">Für wen</h2>
-          <p className="text-base-content/70 mb-4">
-            Für Menschen die spüren, dass es anders gehen muss. Die bereits
-            anfangen, sich lokal zu vernetzen und neue Strukturen aufzubauen —
-            und dafür Werkzeuge brauchen, die ihnen gehören.
-          </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="prose prose-lg max-w-none mb-6">
+            <p>
+              Für Menschen die spüren, dass es anders gehen muss. Die bereits
+              anfangen, sich lokal zu vernetzen und neue Strukturen aufzubauen —
+              und dafür Werkzeuge brauchen, die ihnen gehören.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
             {targetGroups.map(group => (
               <span key={group} className="badge badge-primary badge-lg">
                 {group}
