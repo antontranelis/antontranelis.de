@@ -1,6 +1,6 @@
 ---
 title: Money Printing
-description: Webanwendung zum Erstellen und Drucken persönlicher Währungen mit Web-of-Trust-Integration.
+description: Persönliche Währungen erstellen und drucken — mit Web-of-Trust-Integration.
 sort: 4
 technologies:
   - TypeScript

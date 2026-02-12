@@ -1,6 +1,6 @@
 ---
 title: Web of Trust
-description: Dezentrales Vertrauensnetzwerk für lokale Gemeinschaften. Verifiziere Kontakte persönlich, teile verschlüsselte Inhalte und baue Sozialkapital durch Attestationen auf.
+description: Ein dezentrales Vertrauensnetzwerk in dem Daten nur verschlüsselt mit Freunden und Gruppen geteilt werden.
 sort: 1
 technologies:
   - E2EE

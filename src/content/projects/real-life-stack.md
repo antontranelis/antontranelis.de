@@ -1,6 +1,6 @@
 ---
 title: Real Life Stack
-description: Modularer Baukasten für lokale Vernetzung und dezentrale Zusammenarbeit. Ermöglicht Communities, eigene Apps zu entwickeln mit Modulen für Kalender, Karte, Feed, Gruppen und Profile.
+description: Modularer Baukasten für lokale Vernetzung und dezentrale Zusammenarbeit.
 sort: 2
 technologies:
   - TypeScript

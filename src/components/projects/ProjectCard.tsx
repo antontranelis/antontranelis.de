@@ -89,7 +89,7 @@ export default function ProjectCard({ project }: Props) {
         <h2 className="card-title group-hover:text-primary transition-colors">
           {project.title}
         </h2>
-        <p className="text-base-content/80 line-clamp-3">{project.description}</p>
+        <p className="text-base-content/80">{project.description}</p>
         {(project.liveUrl || project.githubUrl) && (
           <div className="flex flex-col gap-1 text-xs text-base-content/60 mt-2">
             {project.liveUrl && (
@@ -142,13 +142,6 @@ export default function ProjectCard({ project }: Props) {
             )}
           </div>
         )}
-        <div className="flex flex-wrap gap-1 my-2">
-          {project.technologies.slice(0, 4).map(tech => (
-            <span key={tech} className="badge badge-outline badge-sm">
-              {tech}
-            </span>
-          ))}
-        </div>
         <div className="card-actions justify-between items-center mt-4">
           <div className="flex items-center gap-2">
             {githubStats && githubStats.stars > 0 && (
