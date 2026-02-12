@@ -137,10 +137,12 @@ export function useMdxProjects(): ProjectData[] {
               : typeof data.sort === 'string'
                 ? parseInt(data.sort, 10)
                 : 999,
+          active: data.active !== false,
           content,
           isMdx: false as const,
         };
       })
+      .filter(p => p.active !== false)
       .sort((a, b) => (a.sort ?? 999) - (b.sort ?? 999));
   }, []);
 }
