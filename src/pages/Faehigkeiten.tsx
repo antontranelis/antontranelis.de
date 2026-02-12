@@ -5,15 +5,15 @@ const skillCategories = [
   },
   {
     label: 'Backend',
-    skills: ['Node.js', 'Python', 'SQLite', 'PostgreSQL'],
+    skills: ['Node.js', 'Python', 'PostgreSQL', 'SQLite'],
   },
   {
     label: 'Dezentral',
-    skills: ['E2EE', 'DIDs', 'CRDTs', 'Automerge', 'Local-First', 'WebSocket'],
+    skills: ['E2EE', 'DIDs', 'CRDTs', 'Local-First', 'Automerge', 'WebSocket'],
   },
   {
     label: 'KI',
-    skills: ['LLM-Integration', 'Claude API', 'MCP Server', 'Agentische Systeme', 'Automatisierung'],
+    skills: ['LLM-Integration', 'MCP Server', 'Agentische Systeme', 'Claude API', 'Automatisierung'],
   },
   {
     label: 'DevOps',
@@ -66,8 +66,7 @@ export default function Faehigkeiten() {
               großen Plattformen.
             </p>
             <p>
-              Was mich ausmacht ist nicht eine bestimmte Technologie, sondern wie
-              ich sie einsetze. Ich denke von den Menschen her, nicht vom Code.
+              Ich denke von den Menschen her, nicht vom Code.
               Jede technische Entscheidung frage ich: Dient das der Gemeinschaft?
               Schützt das die Privatsphäre? Funktioniert das auch ohne Internet?
             </p>
@@ -133,7 +132,7 @@ export default function Faehigkeiten() {
             </p>
             <div className="card-actions mt-4">
               <a
-                href="mailto:anton@antontraenlis.de"
+                href="mailto:mail@antontranelis.de"
                 className="btn btn-primary gap-2"
               >
                 E-Mail schreiben

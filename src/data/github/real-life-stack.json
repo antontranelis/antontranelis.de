@@ -1,45 +1,14 @@
 {
   "slug": "real-life-stack",
-  "fetchedAt": "2026-02-12T07:25:10.951Z",
+  "fetchedAt": "2026-02-12T07:30:29.662Z",
   "stats": {
-    "stars": 2,
+    "stars": 0,
     "forks": 0,
     "openIssues": 0
   },
   "todos": [],
   "researchQuestions": [],
-  "contributors": [
-    {
-      "login": "antontranelis",
-      "avatar": "https://avatars.githubusercontent.com/u/31516529?v=4",
-      "contributions": 202,
-      "profileUrl": "https://github.com/antontranelis"
-    },
-    {
-      "login": "ulfgebhardt",
-      "avatar": "https://avatars.githubusercontent.com/u/1238238?v=4",
-      "contributions": 20,
-      "profileUrl": "https://github.com/ulfgebhardt"
-    },
-    {
-      "login": "mahula",
-      "avatar": "https://avatars.githubusercontent.com/u/3883288?v=4",
-      "contributions": 10,
-      "profileUrl": "https://github.com/mahula"
-    },
-    {
-      "login": "sebastian2357",
-      "avatar": "https://avatars.githubusercontent.com/u/80636200?v=4",
-      "contributions": 8,
-      "profileUrl": "https://github.com/sebastian2357"
-    },
-    {
-      "login": "Copilot",
-      "avatar": "https://avatars.githubusercontent.com/in/1143301?v=4",
-      "contributions": 2,
-      "profileUrl": "https://github.com/apps/copilot-swe-agent"
-    }
-  ],
+  "contributors": [],
   "latestRelease": null,
   "milestone": null
 }
