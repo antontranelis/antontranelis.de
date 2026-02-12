@@ -1,0 +1,21 @@
+{
+  "slug": "web-of-trust",
+  "fetchedAt": "2026-02-12T07:25:12.281Z",
+  "stats": {
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0
+  },
+  "todos": [],
+  "researchQuestions": [],
+  "contributors": [
+    {
+      "login": "antontranelis",
+      "avatar": "https://avatars.githubusercontent.com/u/31516529?v=4",
+      "contributions": 115,
+      "profileUrl": "https://github.com/antontranelis"
+    }
+  ],
+  "latestRelease": null,
+  "milestone": null
+}

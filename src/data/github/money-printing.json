@@ -1,0 +1,26 @@
+{
+  "slug": "money-printing",
+  "fetchedAt": "2026-02-12T07:25:10.724Z",
+  "stats": {
+    "stars": 1,
+    "forks": 1,
+    "openIssues": 0
+  },
+  "todos": [],
+  "researchQuestions": [],
+  "contributors": [
+    {
+      "login": "antontranelis",
+      "avatar": "https://avatars.githubusercontent.com/u/31516529?v=4",
+      "contributions": 134,
+      "profileUrl": "https://github.com/antontranelis"
+    }
+  ],
+  "latestRelease": {
+    "tag": "v1.8.0",
+    "name": "v1.8.0",
+    "date": "2026-01-28T11:04:31Z",
+    "url": "https://github.com/antontranelis/money-printer/releases/tag/v1.8.0"
+  },
+  "milestone": null
+}

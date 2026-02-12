@@ -150,10 +150,13 @@ export function useMarkdownProjects(): (Project & { content: string })[] {
         team: (data.team as TeamMember[]) || undefined,
         userStories: (data.userStories as string[]) || undefined,
         sort: typeof data.sort === 'number' ? data.sort : (typeof data.sort === 'string' ? parseInt(data.sort, 10) : 999),
+        active: data.active !== false,
       };
     });
 
-    // Nach sort-Attribut sortieren (niedrigere Zahlen zuerst)
-    return projects.sort((a, b) => (a.sort ?? 999) - (b.sort ?? 999));
+    // Inaktive Projekte ausfiltern, dann nach sort-Attribut sortieren
+    return projects
+      .filter(p => p.active !== false)
+      .sort((a, b) => (a.sort ?? 999) - (b.sort ?? 999));
   }, []);
 }

@@ -12,6 +12,7 @@ export interface PostMeta {
   featured?: boolean;
   slug: string;
   externalUrl?: string;
+  image?: string;
 }
 
 export interface Post extends PostMeta {
@@ -30,6 +31,7 @@ export interface Project {
   githubUrl?: string;
   featured?: boolean;
   sort?: number;
+  active?: boolean;
   status?: string;
   team?: TeamMember[];
   relatedProjects?: string[];

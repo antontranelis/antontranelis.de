@@ -1,7 +1,7 @@
 ---
 title: Real Life Stack
 description: Modularer Baukasten für lokale Vernetzung und dezentrale Zusammenarbeit. Ermöglicht Communities, eigene Apps zu entwickeln mit Modulen für Kalender, Karte, Feed, Gruppen und Profile.
-sort: 3
+sort: 2
 technologies:
   - TypeScript
   - React
@@ -21,5 +21,6 @@ team:
     role: Qualitätssicherung, Testing
     github: mahula
 githubUrl: https://github.com/IT4Change/real-life-stack
+liveUrl: https://real-life-stack.de/
 image: /real-life-stack.png
 ---
