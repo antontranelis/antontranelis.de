@@ -1,7 +1,7 @@
 ---
 title: Utopia Map
 description: Kollaborative Karte für lokale Vernetzung und dezentrale Koordination.
-sort: 3
+sort: 4
 technologies:
   - TypeScript
   - React

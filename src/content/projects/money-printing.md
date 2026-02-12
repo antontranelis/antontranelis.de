@@ -1,7 +1,7 @@
 ---
 title: Money Printing
 description: Persönliche Währungen erstellen und drucken — mit Web-of-Trust-Integration.
-sort: 4
+sort: 3
 technologies:
   - TypeScript
   - React
