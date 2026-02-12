@@ -1,6 +1,6 @@
 ---
 title: Money Printing
-description: Druck dein eigenes Geld. Persönliche Währungen erstellen und drucken — mit Web-of-Trust-Integration.
+description: Druck dein eigenes Geld! Zeitgutscheine, die aussehen und sich anfühlen wie echtes Geld.
 sort: 3
 technologies:
   - TypeScript
