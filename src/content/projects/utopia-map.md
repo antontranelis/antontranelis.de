@@ -9,6 +9,5 @@ technologies:
   - Docker
 githubUrl: https://github.com/utopia-os/utopia-map
 opencollectiveUrl: https://opencollective.com/utopia-project
-liveUrl: https://utopia-map.org
 image: /map.png
 ---
