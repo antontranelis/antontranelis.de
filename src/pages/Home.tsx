@@ -50,10 +50,6 @@ export default function Home() {
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              {/* Small sacred dot */}
-              <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full border border-primary/15 flex items-center justify-center">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary/25" />
-              </div>
             </div>
           </div>
 

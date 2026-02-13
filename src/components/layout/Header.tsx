@@ -49,13 +49,13 @@ export default function Header() {
           <Link to="/" className="group flex items-center gap-2.5">
             <div className="relative w-7 h-7">
               <svg viewBox="0 0 28 28" className="w-full h-full text-primary/40 group-hover:text-primary/70 transition-colors duration-500">
-                <circle cx="14" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="0.7" />
-                <circle cx="14" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
-                <circle cx="14" cy="20" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
-                <circle cx="8.8" cy="11" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-                <circle cx="19.2" cy="11" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-                <circle cx="8.8" cy="17" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
-                <circle cx="19.2" cy="17" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+                <circle cx="14" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="14" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="14" cy="20" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="8.8" cy="11" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="19.2" cy="11" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="8.8" cy="17" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="19.2" cy="17" r="6" fill="none" stroke="currentColor" strokeWidth="0.5" />
               </svg>
             </div>
             <span className="font-heading text-lg tracking-wide text-base-content/80 group-hover:text-base-content transition-colors duration-500">
