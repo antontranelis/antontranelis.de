@@ -37,9 +37,9 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-700 ${
+      className={`sticky top-0 z-50 transition-colors duration-500 ${
         scrolled
-          ? 'bg-base-100/85 backdrop-blur-xl border-b border-base-content/4'
+          ? 'bg-base-100/85 backdrop-blur-xl'
           : 'bg-transparent'
       }`}
     >

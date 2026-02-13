@@ -56,7 +56,7 @@ export default function Faehigkeiten() {
         <div className="prose prose-lg max-w-none">
           <p>
             Ich bin Full-Stack-Entwickler und Systemdenker. Seit über sieben Jahren
-            arbeite ich zusammen mit einer wachsenden Community an derselben Vision:
+            arbeite ich zusammen mit einer wachsenden Community an unserer Vision:
             Werkzeuge bauen, die Menschen im echten Leben verbinden — dezentral,
             verschlüsselt, ohne Abhängigkeit von großen Plattformen.
           </p>
