@@ -50,7 +50,7 @@ export default function Header() {
             <div className="relative w-7 h-7">
               <svg viewBox="0 0 28 28" className="w-full h-full text-primary/40 group-hover:text-primary/70 transition-colors duration-500" fill="none" stroke="currentColor" strokeLinecap="butt">
                 <path strokeWidth="1.25" d="M4.88,9.12 C5.66,7.43 6.92,5.93 8.51,4.85" />
-                <path d="M8.16,5.09 A0.625,0.625 0 0 1 8.86,4.61" fill="currentColor" stroke="none" />
+                <path d="M8.16,4.33 A0.625,0.625 0 0 1 8.86,5.37" fill="currentColor" stroke="none" />
                 <path strokeWidth="1.21" d="M4.0,14.49 C3.8,12.7 4.1,10.82 4.88,9.12" />
                 <path strokeWidth="1.17" d="M5.95,19.38 C4.89,17.99 4.19,16.29 4.0,14.49" />
                 <path strokeWidth="1.14" d="M10.0,22.46 C8.43,21.84 7.0,20.77 5.95,19.38" />
