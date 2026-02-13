@@ -16,6 +16,23 @@ function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
   return { owner: match[1], repo: match[2].replace(/\.git$/, '') };
 }
 
+const CACHE_TTL = 1000 * 60 * 30; // 30 min
+
+function getCachedStats(key: string): GitHubStats | null {
+  try {
+    const raw = sessionStorage.getItem(`gh:${key}`);
+    if (!raw) return null;
+    const { data, ts } = JSON.parse(raw);
+    if (Date.now() - ts > CACHE_TTL) return null;
+    return data;
+  } catch { return null; }
+}
+
+function setCachedStats(key: string, data: GitHubStats) {
+  try { sessionStorage.setItem(`gh:${key}`, JSON.stringify({ data, ts: Date.now() })); }
+  catch { /* quota exceeded */ }
+}
+
 function useGitHubStats(repoUrl: string | undefined): GitHubStats | null {
   const [stats, setStats] = useState<GitHubStats | null>(null);
 
@@ -25,6 +42,10 @@ function useGitHubStats(repoUrl: string | undefined): GitHubStats | null {
     if (!parsed) return;
 
     const { owner, repo } = parsed;
+    const cacheKey = `${owner}/${repo}`;
+
+    const cached = getCachedStats(cacheKey);
+    if (cached) { setStats(cached); return; }
 
     async function fetchStats() {
       try {
@@ -35,29 +56,20 @@ function useGitHubStats(repoUrl: string | undefined): GitHubStats | null {
         const repoData = await repoRes.json();
 
         const contribRes = await fetch(
-          `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=1&anon=true`,
-          { method: 'HEAD' }
+          `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100&anon=true`
         );
-
         let contributors = 0;
-        const linkHeader = contribRes.headers.get('Link');
-        if (linkHeader) {
-          const match = linkHeader.match(/page=(\d+)>; rel="last"/);
-          if (match) contributors = parseInt(match[1], 10);
-        } else {
-          const contribDataRes = await fetch(
-            `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100`
-          );
-          if (contribDataRes.ok) {
-            const contribData = await contribDataRes.json();
-            contributors = Array.isArray(contribData) ? contribData.length : 0;
-          }
+        if (contribRes.ok) {
+          const contribData = await contribRes.json();
+          contributors = Array.isArray(contribData) ? contribData.length : 0;
         }
 
-        setStats({
+        const result = {
           stars: repoData.stargazers_count || 0,
           contributors,
-        });
+        };
+        setCachedStats(cacheKey, result);
+        setStats(result);
       } catch {
         // Ignore errors
       }
@@ -69,15 +81,73 @@ function useGitHubStats(repoUrl: string | undefined): GitHubStats | null {
   return stats;
 }
 
+// Project brand config: color + white-on-color icon
+const projectBrands: Record<string, { color: string; icon: React.ReactNode }> = {
+  'web-of-trust': {
+    color: '#2563eb',
+    icon: (
+      <svg viewBox="14 22 72 60" className="w-5 h-5">
+        <g transform="rotate(12, 50, 50)">
+          <circle cx="30" cy="38" r="8" fill="white" />
+          <circle cx="70" cy="38" r="8" fill="white" />
+          <circle cx="50" cy="72" r="8" fill="white" />
+          <line x1="30" y1="38" x2="70" y2="38" stroke="white" strokeWidth="3" />
+          <line x1="30" y1="38" x2="50" y2="72" stroke="white" strokeWidth="3" />
+          <line x1="70" y1="38" x2="50" y2="72" stroke="white" strokeWidth="3" />
+        </g>
+      </svg>
+    ),
+  },
+  'real-life-stack': {
+    color: '#23881a',
+    icon: (
+      <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
+        <g transform="translate(4 4)" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
+          <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
+          <path d="M5 21h14" />
+        </g>
+      </svg>
+    ),
+  },
+  'money-printing': {
+    color: '#2d5a3d',
+    icon: (
+      <svg viewBox="140 60 232 390" className="w-5 h-5">
+        <g transform="translate(176, 96) scale(0.625)">
+          <path fill="white" d="M209.2 233.4l-108-31.6C88.7 198.2 80 186.5 80 173.5c0-16.3 13.2-29.5 29.5-29.5h66.3c12.2 0 24.2 3.7 34.2 10.5 6.1 4.1 14.3 3.1 19.5-2l34.8-34c7.1-6.9 6.1-18.4-1.8-24.5C238 74.8 207.4 64.1 176 64V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48h-2.5C45.8 64-5.4 118.7.5 183.6c4.2 46.1 39.4 83.6 83.8 96.6l102.5 30c12.5 3.7 21.2 15.3 21.2 28.3 0 16.3-13.2 29.5-29.5 29.5h-66.3C100 368 88 364.3 78 357.5c-6.1-4.1-14.3-3.1-19.5 2l-34.8 34c-7.1 6.9-6.1 18.4 1.8 24.5 24.5 19.2 55.1 29.9 86.5 30v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48.2c46.6-.9 90.3-28.6 105.7-72.7 21.5-61.6-14.6-124.8-72.5-141.7z" />
+        </g>
+      </svg>
+    ),
+  },
+  'utopia-map': {
+    color: 'transparent',
+    icon: (
+      <img src="/3markers-globe.svg" alt="" className="w-8 h-8" />
+    ),
+  },
+};
+
 export default function ProjectCard({ project }: Props) {
   const githubStats = useGitHubStats(project.githubUrl);
   const externalUrl = project.liveUrl || project.githubUrl;
+  const brand = projectBrands[project.id];
 
   const cardContent = (
-    <div className="group organic-card h-full flex flex-col p-6">
-      <h2 className="font-heading text-lg group-hover:text-primary transition-colors duration-300 mb-2">
-        {project.title}
-      </h2>
+    <div className="group organic-card h-full flex flex-col overflow-hidden p-6">
+      <div className="flex items-center gap-2.5 mb-2">
+        {brand && (
+          <div
+            className="w-7 h-7 shrink-0 rounded-lg flex items-center justify-center"
+            style={brand.color !== 'transparent' ? { backgroundColor: brand.color } : undefined}
+          >
+            {brand.icon}
+          </div>
+        )}
+        <h2 className="font-heading text-lg group-hover:text-primary transition-colors duration-300">
+          {project.title}
+        </h2>
+      </div>
       <p className="text-base-content/55 text-sm leading-relaxed mb-4">
         {project.description}
       </p>

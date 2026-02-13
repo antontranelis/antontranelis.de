@@ -25,7 +25,7 @@ export default function Home() {
                 <img
                   src="/Anton.png"
                   alt="Anton"
-                  className="w-full h-full object-cover object-top saturate-[0.75]"
+                  className="w-full h-full object-cover object-top saturate-[0.85]"
                 />
               </div>
             </div>
