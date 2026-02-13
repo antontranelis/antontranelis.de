@@ -1,14 +1,67 @@
 {
   "slug": "utopia-map",
-  "fetchedAt": "2026-02-13T07:00:26.912Z",
+  "fetchedAt": "2026-02-13T08:33:55.199Z",
   "stats": {
-    "stars": 0,
-    "forks": 0,
-    "openIssues": 0
+    "stars": 30,
+    "forks": 7,
+    "openIssues": 81
   },
   "todos": [],
   "researchQuestions": [],
-  "contributors": [],
-  "latestRelease": null,
-  "milestone": null
+  "contributors": [
+    {
+      "login": "antontranelis",
+      "avatar": "https://avatars.githubusercontent.com/u/31516529?v=4",
+      "contributions": 1316,
+      "profileUrl": "https://github.com/antontranelis"
+    },
+    {
+      "login": "ulfgebhardt",
+      "avatar": "https://avatars.githubusercontent.com/u/1238238?v=4",
+      "contributions": 185,
+      "profileUrl": "https://github.com/ulfgebhardt"
+    },
+    {
+      "login": "dependabot[bot]",
+      "avatar": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "contributions": 119,
+      "profileUrl": "https://github.com/apps/dependabot"
+    },
+    {
+      "login": "Bettelstab",
+      "avatar": "https://avatars.githubusercontent.com/u/3285528?v=4",
+      "contributions": 55,
+      "profileUrl": "https://github.com/Bettelstab"
+    },
+    {
+      "login": "mahula",
+      "avatar": "https://avatars.githubusercontent.com/u/3883288?v=4",
+      "contributions": 27,
+      "profileUrl": "https://github.com/mahula"
+    },
+    {
+      "login": "Mogge",
+      "avatar": "https://avatars.githubusercontent.com/u/15882241?v=4",
+      "contributions": 19,
+      "profileUrl": "https://github.com/Mogge"
+    },
+    {
+      "login": "Copilot",
+      "avatar": "https://avatars.githubusercontent.com/in/1143301?v=4",
+      "contributions": 5,
+      "profileUrl": "https://github.com/apps/copilot-swe-agent"
+    }
+  ],
+  "latestRelease": {
+    "tag": "v1.0.7-alpha",
+    "name": "Utopia UI 1.0.7",
+    "date": "2022-07-12T10:25:36Z",
+    "url": "https://github.com/utopia-os/utopia-map/releases/tag/v1.0.7-alpha"
+  },
+  "milestone": {
+    "title": "Profile Component Kit",
+    "description": "We like to provide a rich Construction Kit of nice profile components to allow every network to define custom profiles for each of their layers.",
+    "progress": 75,
+    "url": "https://github.com/utopia-os/utopia-map/milestone/1"
+  }
 }

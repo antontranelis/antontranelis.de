@@ -1,14 +1,21 @@
 {
   "slug": "maluhia",
-  "fetchedAt": "2026-02-13T07:00:26.844Z",
+  "fetchedAt": "2026-02-13T08:33:54.123Z",
   "stats": {
-    "stars": 0,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
   "todos": [],
   "researchQuestions": [],
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "antontranelis",
+      "avatar": "https://avatars.githubusercontent.com/u/31516529?v=4",
+      "contributions": 45,
+      "profileUrl": "https://github.com/antontranelis"
+    }
+  ],
   "latestRelease": null,
   "milestone": null
 }

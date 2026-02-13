@@ -12,7 +12,7 @@ export default function BlogCard({ post }: Props) {
   const isExternal = !!post.externalUrl;
 
   const cardContent = (
-    <div className="group organic-card p-5 h-full flex flex-col">
+    <div className="group h-full flex flex-col">
       {post.image && (
         <div className="aspect-[16/10] bg-base-200 rounded-lg mb-4 overflow-hidden -mx-1 -mt-1">
           <img

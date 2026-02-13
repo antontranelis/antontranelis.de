@@ -86,34 +86,28 @@ const projectBrands: Record<string, { color: string; icon: React.ReactNode }> = 
   'web-of-trust': {
     color: '#2563eb',
     icon: (
-      <svg viewBox="14 22 72 60" className="w-5 h-5">
-        <g transform="rotate(12, 50, 50)">
-          <circle cx="30" cy="38" r="8" fill="white" />
-          <circle cx="70" cy="38" r="8" fill="white" />
-          <circle cx="50" cy="72" r="8" fill="white" />
-          <line x1="30" y1="38" x2="70" y2="38" stroke="white" strokeWidth="3" />
-          <line x1="30" y1="38" x2="50" y2="72" stroke="white" strokeWidth="3" />
-          <line x1="70" y1="38" x2="50" y2="72" stroke="white" strokeWidth="3" />
-        </g>
+      <svg viewBox="0 1 23 22" className="w-full h-full" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="18.72" cy="8.82" r="2.5" />
+        <circle cx="5.28" cy="5.28" r="2.5" />
+        <circle cx="8.82" cy="18.72" r="2.5" />
+        <line x1="6.04" x2="8.06" y1="8.18" y2="15.82" />
+        <line x1="15.81" x2="8.18" y1="8.05" y2="6.04" />
+        <line x1="16.59" x2="10.94" y1="10.94" y2="16.59" />
       </svg>
     ),
   },
   'real-life-stack': {
-    color: '#23881a',
+    color: '#e87520',
     icon: (
-      <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
-        <g transform="translate(4 4)" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
-          <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
-          <path d="M5 21h14" />
-        </g>
+      <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" />
       </svg>
     ),
   },
   'money-printing': {
     color: '#2d5a3d',
     icon: (
-      <svg viewBox="140 60 232 390" className="w-5 h-5">
+      <svg viewBox="140 60 232 390" className="w-full h-full">
         <g transform="translate(176, 96) scale(0.625)">
           <path fill="white" d="M209.2 233.4l-108-31.6C88.7 198.2 80 186.5 80 173.5c0-16.3 13.2-29.5 29.5-29.5h66.3c12.2 0 24.2 3.7 34.2 10.5 6.1 4.1 14.3 3.1 19.5-2l34.8-34c7.1-6.9 6.1-18.4-1.8-24.5C238 74.8 207.4 64.1 176 64V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48h-2.5C45.8 64-5.4 118.7.5 183.6c4.2 46.1 39.4 83.6 83.8 96.6l102.5 30c12.5 3.7 21.2 15.3 21.2 28.3 0 16.3-13.2 29.5-29.5 29.5h-66.3C100 368 88 364.3 78 357.5c-6.1-4.1-14.3-3.1-19.5 2l-34.8 34c-7.1 6.9-6.1 18.4 1.8 24.5 24.5 19.2 55.1 29.9 86.5 30v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48.2c46.6-.9 90.3-28.6 105.7-72.7 21.5-61.6-14.6-124.8-72.5-141.7z" />
         </g>
@@ -134,16 +128,8 @@ export default function ProjectCard({ project }: Props) {
   const brand = projectBrands[project.id];
 
   const cardContent = (
-    <div className="group organic-card h-full flex flex-col overflow-hidden p-6">
+    <div className="group h-full flex flex-col overflow-hidden">
       <div className="flex items-center gap-2.5 mb-2">
-        {brand && (
-          <div
-            className="w-7 h-7 shrink-0 rounded-lg flex items-center justify-center"
-            style={brand.color !== 'transparent' ? { backgroundColor: brand.color } : undefined}
-          >
-            {brand.icon}
-          </div>
-        )}
         <h2 className="font-heading text-lg group-hover:text-primary transition-colors duration-300">
           {project.title}
         </h2>
@@ -164,9 +150,18 @@ export default function ProjectCard({ project }: Props) {
               }}
               className="flex items-center gap-2 text-xs text-base-content/45 hover:text-primary transition-colors duration-300 cursor-pointer"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
+              {brand && brand.color !== 'transparent' ? (
+                <span
+                  className="size-3.5 shrink-0 rounded-sm flex items-center justify-center text-white p-0.5"
+                  style={{ backgroundColor: brand.color }}
+                >
+                  {brand.icon}
+                </span>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+              )}
               <span>{(() => { const url = new URL(project.liveUrl); return url.hostname.replace(/^www\./, '') + (url.pathname !== '/' ? url.pathname.replace(/\/$/, '') : ''); })()}</span>
             </span>
           )}
@@ -191,7 +186,7 @@ export default function ProjectCard({ project }: Props) {
 
       <div className="flex-grow" />
 
-      <div className="flex items-center justify-between pt-4">
+      <div className="flex items-center justify-between pt-2">
         <div className="flex items-center gap-3">
           {githubStats && githubStats.stars > 0 && (
             <span
