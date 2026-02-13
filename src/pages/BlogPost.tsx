@@ -14,15 +14,14 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Artikel nicht gefunden</h1>
-        <p className="mb-8">Der gesuchte Artikel existiert nicht.</p>
-        <Link to="/blog" className="btn btn-primary">Zurück zum Blog</Link>
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center animate-rise">
+        <h1 className="font-heading text-3xl mb-4">Artikel nicht gefunden</h1>
+        <p className="text-base-content/55 mb-8">Der gesuchte Artikel existiert nicht.</p>
+        <Link to="/blog" className="btn btn-primary rounded-lg px-6">Zurück zum Blog</Link>
       </div>
     );
   }
 
-  // Resolve related items
   const relatedProjects = post.relatedProjects
     ?.map(slug => projects.find(p => p.id === slug))
     .filter(Boolean)
@@ -34,39 +33,39 @@ export default function BlogPost() {
     .map(p => ({ slug: p!.slug, title: p!.title }));
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8">
+    <div className="flex flex-col lg:flex-row gap-10 animate-rise">
       <article className="flex-1 min-w-0">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-          <div className="flex flex-wrap gap-2 items-center text-base-content/70 text-sm">
-            <time dateTime={post.date}>
-              {format(new Date(post.date), 'd. MMMM yyyy', { locale: de })}
-            </time>
-            <span>•</span>
-            <div className="flex gap-2">
-              {post.tags.map(tag => (
-                <Link
-                  key={tag}
-                  to={`/blog?tag=${encodeURIComponent(tag)}`}
-                  className="badge badge-outline badge-sm hover:badge-primary"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2 mb-3">
+            {post.tags.map(tag => (
+              <Link key={tag} to={`/blog?tag=${encodeURIComponent(tag)}`} className="leaf-tag text-[10px]">
+                {tag}
+              </Link>
+            ))}
           </div>
+
+          <h1 className="font-heading text-3xl md:text-4xl leading-tight mb-3">
+            {post.title}
+          </h1>
+
+          <time dateTime={post.date} className="text-sm text-base-content/45">
+            {format(new Date(post.date), 'd. MMMM yyyy', { locale: de })}
+          </time>
         </header>
-        <div className="prose max-w-none">
+
+        <div className="prose prose-lg max-w-none">
           <MarkdownRenderer content={post.content} />
         </div>
       </article>
 
-      <div className="lg:w-64 shrink-0">
-        <Sidebar
-          relatedProjects={relatedProjects}
-          relatedArticles={relatedArticles}
-        />
-      </div>
+      <aside className="lg:w-64 shrink-0">
+        <div className="lg:sticky lg:top-24">
+          <Sidebar
+            relatedProjects={relatedProjects}
+            relatedArticles={relatedArticles}
+          />
+        </div>
+      </aside>
     </div>
   );
 }

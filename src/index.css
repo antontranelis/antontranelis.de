@@ -1,8 +1,305 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
 @plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
-/* daisyUI Theme Configuration */
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+/* ─── Terra Light ─── */
+@plugin "daisyui/theme" {
+  name: "terra";
+  default: true;
+  color-scheme: light;
+  --color-base-100: oklch(95.5% 0.01 75);
+  --color-base-200: oklch(92% 0.012 75);
+  --color-base-300: oklch(87% 0.01 70);
+  --color-base-content: oklch(22% 0.025 55);
+  --color-primary: oklch(48% 0.09 145);
+  --color-primary-content: oklch(97% 0.005 145);
+  --color-secondary: oklch(48% 0.08 50);
+  --color-secondary-content: oklch(97% 0.005 50);
+  --color-accent: oklch(58% 0.14 75);
+  --color-accent-content: oklch(15% 0.03 75);
+  --color-neutral: oklch(30% 0.03 55);
+  --color-neutral-content: oklch(92% 0.005 55);
+  --color-info: oklch(55% 0.1 240);
+  --color-info-content: oklch(97% 0.005 240);
+  --color-success: oklch(48% 0.09 145);
+  --color-success-content: oklch(97% 0.005 145);
+  --color-warning: oklch(62% 0.14 75);
+  --color-warning-content: oklch(15% 0.03 75);
+  --color-error: oklch(52% 0.16 25);
+  --color-error-content: oklch(97% 0.005 25);
+  --radius-selector: 0.625rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1rem;
+  --size-selector: 0.28rem;
+  --size-field: 0.28rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ─── Terra Dark ─── */
+@plugin "daisyui/theme" {
+  name: "terradark";
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: oklch(17% 0.015 55);
+  --color-base-200: oklch(21% 0.013 55);
+  --color-base-300: oklch(26% 0.01 55);
+  --color-base-content: oklch(87% 0.01 75);
+  --color-primary: oklch(56% 0.09 145);
+  --color-primary-content: oklch(97% 0.005 145);
+  --color-secondary: oklch(55% 0.07 50);
+  --color-secondary-content: oklch(97% 0.005 50);
+  --color-accent: oklch(60% 0.12 75);
+  --color-accent-content: oklch(15% 0.03 75);
+  --color-neutral: oklch(22% 0.012 55);
+  --color-neutral-content: oklch(84% 0.005 55);
+  --color-info: oklch(60% 0.1 240);
+  --color-info-content: oklch(97% 0.005 240);
+  --color-success: oklch(56% 0.09 145);
+  --color-success-content: oklch(97% 0.005 145);
+  --color-warning: oklch(60% 0.12 75);
+  --color-warning-content: oklch(15% 0.03 75);
+  --color-error: oklch(58% 0.14 25);
+  --color-error-content: oklch(97% 0.005 25);
+  --radius-selector: 0.625rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1rem;
+  --size-selector: 0.28rem;
+  --size-field: 0.28rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@theme {
+  /* Earth tones */
+  --color-root: #3d2c1e;
+  --color-bark: #5c4033;
+  --color-bark-light: #7a5c4a;
+  --color-umber: #6b4c3b;
+  --color-sienna: #8b5e3c;
+  --color-moss: #6b7f5e;
+  --color-moss-light: #8fa67e;
+  --color-lichen: #a8b89a;
+  --color-sage: #c5ceb8;
+  --color-sand: #ddd5c4;
+  --color-clay: #c7977a;
+  --color-amber: #d4a853;
+  --color-gold: #b8923f;
+  --color-dusk: #7b6d8a;
+  --color-twilight: #5e4b6b;
+  --color-mist: #f4f1ec;
+  --color-fog: #eae5dc;
+  --color-smoke: #d6d0c5;
+
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Raleway', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ─── Base ─── */
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+/* ─── Prose ─── */
+.prose {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* ─── Sacred Geometry: Seed of Life SVG pattern ─── */
+.seed-of-life {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%236b7f5e' stroke-width='0.5' opacity='0.08'%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3Ccircle cx='60' cy='40' r='20'/%3E%3Ccircle cx='60' cy='80' r='20'/%3E%3Ccircle cx='42.68' cy='50' r='20'/%3E%3Ccircle cx='77.32' cy='50' r='20'/%3E%3Ccircle cx='42.68' cy='70' r='20'/%3E%3Ccircle cx='77.32' cy='70' r='20'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ─── Organic leaf veins pattern ─── */
+.leaf-veins {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 C40 40 40 40 40 80' stroke='%236b7f5e' stroke-width='0.4' fill='none' opacity='0.06'/%3E%3Cpath d='M40 20 C50 25 55 30 60 40' stroke='%236b7f5e' stroke-width='0.3' fill='none' opacity='0.05'/%3E%3Cpath d='M40 20 C30 25 25 30 20 40' stroke='%236b7f5e' stroke-width='0.3' fill='none' opacity='0.05'/%3E%3Cpath d='M40 45 C50 50 58 55 65 65' stroke='%236b7f5e' stroke-width='0.3' fill='none' opacity='0.04'/%3E%3Cpath d='M40 45 C30 50 22 55 15 65' stroke='%236b7f5e' stroke-width='0.3' fill='none' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ─── Animations ─── */
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.03); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes unfurl {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.3; }
+}
+
+.animate-breathe {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.animate-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-unfurl {
+  animation: unfurl 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 6s ease-in-out infinite;
+}
+
+/* Stagger */
+.stagger > * { animation: unfurl 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 70ms; }
+.stagger > *:nth-child(3) { animation-delay: 140ms; }
+.stagger > *:nth-child(4) { animation-delay: 210ms; }
+.stagger > *:nth-child(5) { animation-delay: 280ms; }
+.stagger > *:nth-child(6) { animation-delay: 350ms; }
+.stagger > *:nth-child(7) { animation-delay: 420ms; }
+.stagger > *:nth-child(8) { animation-delay: 490ms; }
+
+/* ─── Organic Card ─── */
+.organic-card {
+  position: relative;
+  background: var(--color-base-100);
+  border: 1.5px solid color-mix(in oklch, var(--color-secondary) 10%, transparent);
+  border-radius: 1.25rem 1rem 1.15rem 0.9rem;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+}
+
+.organic-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--color-secondary) 25%, transparent);
+  box-shadow:
+    0 8px 28px color-mix(in oklch, var(--color-base-content) 6%, transparent),
+    0 2px 8px color-mix(in oklch, var(--color-base-content) 3%, transparent);
+}
+
+/* ─── Leaf Tag ─── */
+.leaf-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 1rem 0.7rem 0.9rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: color-mix(in oklch, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  border: 1px solid color-mix(in oklch, var(--color-primary) 8%, transparent);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.leaf-tag:hover {
+  background: color-mix(in oklch, var(--color-primary) 16%, transparent);
+  border-color: color-mix(in oklch, var(--color-primary) 15%, transparent);
+}
+
+/* ─── Divider with leaf ornament ─── */
+.leaf-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: color-mix(in oklch, var(--color-base-content) 25%, transparent);
+}
+
+.leaf-divider::before,
+.leaf-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, color-mix(in oklch, var(--color-secondary) 15%, transparent), transparent);
+}
+
+/* ─── Sacred geometry circle ornament (CSS only) ─── */
+.sacred-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklch, var(--color-primary) 12%, transparent);
+}
+
+.sacred-circle::before {
+  content: '';
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklch, var(--color-primary) 8%, transparent);
+}
+
+.sacred-circle::after {
+  content: '';
+  position: absolute;
+  inset: 35%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklch, var(--color-primary) 6%, transparent);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: color-mix(in oklch, var(--color-primary) 15%, transparent);
+  color: var(--color-base-content);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--color-base-content) 12%, transparent);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-base-content) 20%, transparent);
 }

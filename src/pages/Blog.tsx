@@ -6,20 +6,28 @@ export default function Blog() {
   const activeTag = searchParams.get('tag');
 
   return (
-    <div>
-      {/* Header */}
+    <div className="animate-rise">
       <header className="py-8 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-3">
-          {activeTag ? `Artikel zu "${activeTag}"` : 'Artikel'}
+        <h1 className="font-heading text-3xl md:text-4xl mb-3">
+          {activeTag ? (
+            <>Artikel zu <span className="text-primary">&bdquo;{activeTag}&ldquo;</span></>
+          ) : (
+            'Artikel'
+          )}
         </h1>
         {activeTag && (
-          <Link to="/blog" className="btn btn-sm btn-outline mt-4">
-            ← Alle Artikel anzeigen
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 mt-3 text-sm text-base-content/50 hover:text-primary transition-colors duration-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Alle Artikel anzeigen
           </Link>
         )}
       </header>
 
-      {/* Articles Grid */}
       <BlogList filterTag={activeTag || undefined} />
     </div>
   );
