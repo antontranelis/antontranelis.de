@@ -23,16 +23,16 @@ export default function BlogCard({ post }: Props) {
         </div>
       )}
 
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-3 mb-3">
         {post.tags.slice(0, 2).map(tag =>
           isExternal ? (
-            <span key={tag} className="leaf-tag text-[10px]">{tag}</span>
+            <span key={tag} className="text-[10px] uppercase tracking-[0.12em] text-primary/50">{tag}</span>
           ) : (
             <Link
               key={tag}
               to={`/blog?tag=${encodeURIComponent(tag)}`}
               onClick={e => e.stopPropagation()}
-              className="leaf-tag text-[10px]"
+              className="text-[10px] uppercase tracking-[0.12em] text-primary/50 hover:text-primary transition-colors"
             >
               {tag}
             </Link>
@@ -53,7 +53,7 @@ export default function BlogCard({ post }: Props) {
         {post.excerpt}
       </p>
 
-      <div className="flex items-center justify-between mt-auto pt-3 border-t border-base-content/5">
+      <div className="flex items-center justify-between mt-auto pt-3">
         <div className="flex items-center gap-2 text-xs text-base-content/40">
           <time dateTime={post.date}>
             {format(new Date(post.date), 'd. MMM yyyy', { locale: de })}

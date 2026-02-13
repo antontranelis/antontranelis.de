@@ -121,7 +121,7 @@ export default function ProjectCard({ project }: Props) {
 
       <div className="flex-grow" />
 
-      <div className="flex items-center justify-between pt-4 border-t border-base-content/5">
+      <div className="flex items-center justify-between pt-4">
         <div className="flex items-center gap-3">
           {githubStats && githubStats.stars > 0 && (
             <span

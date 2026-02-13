@@ -114,7 +114,7 @@ export default function Faehigkeiten() {
         </div>
 
         {/* Kontakt CTA */}
-        <div className="organic-card p-8 md:p-10 text-center bg-primary/3 border-primary/8">
+        <div className="text-center">
           <h2 className="font-heading text-2xl mb-2">Interesse?</h2>
           <p className="text-base-content/55 max-w-md mx-auto mb-6 leading-relaxed">
             Schreib mir — ich freue mich über Anfragen zu Automatisierung,

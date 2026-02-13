@@ -35,13 +35,11 @@ export default function Ziele() {
 
       <section className="max-w-3xl space-y-16">
         {/* Vision */}
-        <div className="organic-card p-6 md:p-8 bg-primary/3 border-primary/8">
-          <p className="font-heading text-lg md:text-xl leading-relaxed text-base-content/60 italic">
-            &bdquo;Ich will mit euch unser Schicksal wieder in unsere eigenen Hände legen,
-            Gemeinschaft im echten Leben leben und die Zukunft bauen, die wir
-            gerne unseren Kinder und Enkel überlassen.&ldquo;
-          </p>
-        </div>
+        <p className="font-heading text-lg md:text-xl leading-relaxed text-base-content/60 italic">
+          &bdquo;Ich will mit euch unser Schicksal wieder in unsere eigenen Hände legen,
+          Gemeinschaft vor Ort wieder lebendig machen und die Zukunft bauen, die wir
+          gerne unseren Kindern und Enkeln überlassen.&ldquo;
+        </p>
 
         {/* Warum */}
         <div>
@@ -71,14 +69,15 @@ export default function Ziele() {
           <h2 className="font-heading text-2xl mb-4">Mein Beitrag</h2>
           <div className="space-y-3">
             {[
-              { label: 'Web of Trust', text: 'Ein Netzwerk, das auf echten Begegnungen basiert.' },
-              { label: 'Lokale Software', text: 'Deine Daten gehören dir, funktioniert auch offline.' },
-              { label: 'Werkzeuge für Gemeinschaften', text: 'Karte, Kalender, Marktplatz, sichere Kommunikation.' },
+              { label: 'Web of Trust', text: 'als ein Netzwerk, das durch echte Begegnungen wächst.' },
+              { label: 'Lokale Software', text: 'die deine Daten schützt und offline funktioniert.' },
+              { label: 'Werkzeuge für Gemeinschaften', text: 'wie Karte, Kalender, Marktplatz oder Aufgabenplanung.' },
+              { label: 'Persönliche Währungen', text: 'als Tauschmittel, Wertschätzung und Einladung zur Kooperation.' },
             ].map(item => (
-              <div key={item.label} className="organic-card p-4 flex gap-4 items-baseline">
-                <span className="font-heading text-primary shrink-0">{item.label}</span>
-                <span className="text-base-content/55 text-sm">{item.text}</span>
-              </div>
+              <p key={item.label} className="text-sm leading-relaxed">
+                <span className="font-heading text-primary text-base">{item.label}</span>
+                {' '}<span className="text-base-content/55">{item.text}</span>
+              </p>
             ))}
           </div>
         </div>
@@ -87,9 +86,8 @@ export default function Ziele() {
         <div>
           <h2 className="font-heading text-2xl mb-4">Für wen</h2>
           <p className="text-base-content/60 text-lg leading-relaxed mb-5">
-            Für Menschen die spüren, dass es anders gehen muss. Die bereits
-            anfangen, sich lokal zu vernetzen und neue Strukturen aufzubauen —
-            und dafür Werkzeuge brauchen, die ihnen gehören.
+            Für uns die bereits anfangen, sich lokal zu vernetzen und neue Strukturen aufzubauen —
+            und dafür Werkzeuge brauchen, die uns unterstützen und uns gehören.
           </p>
           <div className="flex flex-wrap gap-2 stagger">
             {targetGroups.map(group => (
