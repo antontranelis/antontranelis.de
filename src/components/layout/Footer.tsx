@@ -28,8 +28,7 @@ export default function Footer() {
               Anton Tranelis
             </p>
             <p className="text-sm text-base-content/45 leading-relaxed">
-              Dezentrale Werkzeuge f&uuml;r echte Gemeinschaften.
-              Verwurzelt in Technologie, verbunden mit Menschen.
+              Dezentrale Werkzeuge für echte Gemeinschaften.
             </p>
           </div>
 
