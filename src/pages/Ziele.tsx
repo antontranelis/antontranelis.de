@@ -86,7 +86,7 @@ export default function Ziele() {
         <div>
           <h2 className="font-heading text-2xl mb-4">Für wen</h2>
           <p className="text-base-content/60 text-lg leading-relaxed mb-5">
-            Für uns die bereits anfangen, sich lokal zu vernetzen und neue Strukturen aufzubauen —
+            Für alles die sich vernetzen um neue Strukturen aufzubauen —
             und dafür Werkzeuge brauchen, die uns unterstützen und uns gehören.
           </p>
           <div className="flex flex-wrap gap-2 stagger">
